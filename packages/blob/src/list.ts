@@ -1,4 +1,3 @@
-import { fetch } from 'undici';
 import type { BlobCommandOptions } from './helpers';
 import {
   getApiUrl,

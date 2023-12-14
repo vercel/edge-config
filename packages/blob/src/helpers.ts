@@ -1,8 +1,6 @@
 // common util interface for blob raw commands, not meant to be used directly
 // this is why it's not exported from index/client
 
-import { type Response } from 'undici';
-
 export interface BlobCommandOptions {
   /**
    * Define your blob API token.

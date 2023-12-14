@@ -1,6 +1,4 @@
 import type { Readable } from 'node:stream';
-import type { BodyInit } from 'undici';
-import { fetch } from 'undici';
 import type { ClientPutCommandOptions } from './client';
 import type { CreateBlobCommandOptions } from './helpers';
 import {
@@ -109,6 +107,7 @@ export function createPutMethod<
       headers,
       // required in order to stream some body types to Cloudflare
       // currently only supported in Node.js, we may have to feature detect this
+      // @ts-expect-error - only supported in Node.js
       duplex: 'half',
     });
 

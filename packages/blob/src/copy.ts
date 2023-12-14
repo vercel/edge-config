@@ -1,4 +1,3 @@
-import { fetch } from 'undici';
 import type { CreateBlobCommandOptions } from './helpers';
 import {
   BlobError,

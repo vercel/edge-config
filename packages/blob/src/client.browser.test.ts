@@ -1,31 +1,4 @@
-import undici from 'undici';
 import { upload } from './client';
-
-// can't use undici mocking utilities because jsdom does not support performance.markResourceTiming
-jest.mock('undici', () => ({
-  fetch: jest
-    .fn()
-    .mockResolvedValueOnce({
-      status: 200,
-      ok: true,
-      json: () =>
-        Promise.resolve({
-          type: 'blob.generate-client-token',
-          clientToken: 'fake-token-for-test',
-        }),
-    })
-    .mockResolvedValueOnce({
-      status: 200,
-      ok: true,
-      json: () =>
-        Promise.resolve({
-          url: `https://storeId.public.blob.vercel-storage.com/superfoo.txt`,
-          pathname: 'foo.txt',
-          contentType: 'text/plain',
-          contentDisposition: 'attachment; filename="foo.txt"',
-        }),
-    }),
-}));
 
 describe('upload()', () => {
   beforeEach(() => {
@@ -49,7 +22,7 @@ describe('upload()', () => {
       }
     `);
 
-    const fetchMock = undici.fetch as jest.Mock;
+    const fetchMock = fetch as jest.Mock;
     expect(fetchMock).toHaveBeenCalledTimes(2);
     expect(fetchMock).toHaveBeenNthCalledWith(
       1,
