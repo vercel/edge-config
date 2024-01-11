@@ -1,4 +1,4 @@
-import { type Interceptable, MockAgent, setGlobalDispatcher } from 'undici';
+import { type Interceptable } from 'undici';
 import { BlobServiceNotAvailable } from './helpers';
 import { list, head, del, put } from './index';
 
@@ -15,32 +15,23 @@ const mockedFileMeta = {
 };
 
 describe('blob client', () => {
-  let mockClient: Interceptable;
+  beforeAll(() => {
+    globalThis.fetch = jest.fn((input, init) => {
+      const url = new URL(input as string);
 
-  beforeEach(() => {
-    process.env.BLOB_READ_WRITE_TOKEN =
-      'vercel_blob_rw_12345fakeStoreId_30FakeRandomCharacters12345678';
-    const mockAgent = new MockAgent();
-    mockAgent.disableNetConnect();
-    setGlobalDispatcher(mockAgent);
-    mockClient = mockAgent.get(BLOB_API_URL);
-    jest.resetAllMocks();
+      path = url.pathname + url.search;
+      headers = init?.headers as Record<string, string>;
+
+      return Promise.resolve(new Response(JSON.stringify(mockedFileMeta)));
+    });
   });
 
+  let mockClient: Interceptable;
+
   describe('head', () => {
-    it('should return Blob metadata when calling `head()`', async () => {
-      let path: string | null = null;
-      let headers: Record<string, string> = {};
-      mockClient
-        .intercept({
-          path: () => true,
-          method: 'GET',
-        })
-        .reply(200, (req) => {
-          path = req.path;
-          headers = req.headers as Record<string, string>;
-          return mockedFileMeta;
-        });
+    it.only('should return Blob metadata when calling `head()`', async () => {
+      const path: string | null = null;
+      const headers: Record<string, string> = {};
 
       await expect(head(`${BLOB_STORE_BASE_URL}/foo-id.txt`)).resolves
         .toMatchInlineSnapshot(`
