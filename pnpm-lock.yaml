@@ -213,7 +213,7 @@ importers:
     dependencies:
       '@neondatabase/serverless':
         specifier: ^0.10.2
-        version: 0.10.2
+        version: 0.10.4
       bufferutil:
         specifier: ^4.0.8
         version: 4.0.8
@@ -1243,9 +1243,6 @@ packages:
 
   '@microsoft/tsdoc@0.14.2':
     resolution: {integrity: sha512-9b8mPpKrfeGRuhFH5iO1iwCLeIIsV6+H1sRfxbkoGXIyQE2BTsPd9zqSqQJ+pv5sJ/hT5M1zvOFL02MnEezFug==}
-
-  '@neondatabase/serverless@0.10.2':
-    resolution: {integrity: sha512-XaIMQ9fXDPWLiShfsg+YJQvmMMIyVQB7J3jnirckyoDxN7YIATyzXBThpUeFJqBUkbFJQ0e5PCxXTpK2rG4WbQ==}
 
   '@neondatabase/serverless@0.10.4':
     resolution: {integrity: sha512-2nZuh3VUO9voBauuh+IGYRhGU/MskWHt1IuZvHcJw6GLjDgtqj/KViKo7SIrLdGLdot7vFbiRRw+BgEy3wT9HA==}
@@ -6483,10 +6480,6 @@ snapshots:
       resolve: 1.19.0
 
   '@microsoft/tsdoc@0.14.2': {}
-
-  '@neondatabase/serverless@0.10.2':
-    dependencies:
-      '@types/pg': 8.11.6
 
   '@neondatabase/serverless@0.10.4':
     dependencies:
