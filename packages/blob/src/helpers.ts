@@ -139,6 +139,7 @@ export const supportsRequestStreams = (() => {
 
   const apiUrl = getApiUrl();
 
+  // Localhost generally doesn't work with HTTP 2 so we can stop here
   if (apiUrl.startsWith('http://localhost')) {
     return false;
   }
