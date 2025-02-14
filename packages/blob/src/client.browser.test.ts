@@ -92,7 +92,7 @@ describe('client', () => {
             authorization: 'Bearer vercel_blob_client_fake_123',
             'x-api-blob-request-attempt': '0',
             'x-api-blob-request-id': `fake:${Date.now()}:${requestId}`,
-            'x-api-version': '8',
+            'x-api-version': '9',
           },
           method: 'PUT',
         },
