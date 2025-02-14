@@ -61,7 +61,7 @@ export function createPutMethod<TOptions extends PutCommandOptions>({
     const params = new URLSearchParams({ pathname });
 
     const response = await requestApi<PutBlobApiResponse>(
-      `?${params.toString()}`,
+      `/?${params.toString()}`,
       {
         method: 'PUT',
         body,

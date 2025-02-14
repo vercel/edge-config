@@ -26,7 +26,7 @@ export async function createFolder(
 
   const params = new URLSearchParams({ pathname: folderPathname });
   const response = await requestApi<PutBlobApiResponse>(
-    `?${params.toString()}`,
+    `/?${params.toString()}`,
     {
       method: 'PUT',
       headers,
